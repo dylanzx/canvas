@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webgl</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: gray;
+        }
+        #drawing{
+            background-color: white;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oC = document.getElementById('drawing');
+            if( oC.getContext ){
+//                alert(1)
+
+                try {
+                    var gl = oC.getContext('experimental-webgl',{alpha:true});
+                }catch (ex){
+
+                }
+                if( gl ){
+                    gl.clearColor(1,0,0,0.3);
+                    gl.viewport(10,10,20,20)
+                    gl.clear(gl.COLOR_BUFFER_BIT)
+                    var buffer  = gl.createBuffer();
+                    gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+                    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([0,0.5,1]),gl.STATIC_DRAW);
+
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<canvas id="drawing" width="200" height="200"></canvas>
+</body>
+</html>

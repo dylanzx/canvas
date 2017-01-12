@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shubiaohuaxian</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        canvas{
+            background-color: aliceblue;
+        }
+
+    </style>
+    <script>
+        window.onload= function () {
+            var oC = document.getElementById('can')
+            var oGc = oC.getContext('2d');
+
+            oGc.moveTo(150,150);
+//            oGc.arc()
+            oGc.arc(150,150,150,0,-Math.PI/2,true)
+            oGc.closePath()
+            oGc.fill()
+
+
+
+        }
+    </script>
+
+
+</head>
+<body>
+<canvas id="can" width="400" height="300"></canvas>
+</body>
+</html>

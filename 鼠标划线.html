@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shubiaohuaxian</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        canvas{
+            background-color: aliceblue;
+        }
+
+    </style>
+    <script>
+        window.onload= function () {
+            var oC = document.getElementById('can')
+            var oGc = oC.getContext('2d')
+
+            oC.onmousedown = function (ev) {
+                var ev = ev || event;
+                oGc.moveTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop)
+
+                document.onmousemove = function (ev) {
+                    var ev = ev || event;
+                    oGc.lineTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop)
+                    oGc.stroke()
+
+
+                }
+                document.onmouseup = function () {
+                    document.onmousedown = null
+                    document.onmousemove = null
+
+                }
+
+            }
+
+
+        }
+    </script>
+
+
+</head>
+<body>
+<canvas id="can" width="400" height="300"></canvas>
+</body>
+</html>

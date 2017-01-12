@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        canvas{
+            background-color: aliceblue;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            var oC = document.getElementById('can');
+            var oGc = oC.getContext('2d');
+
+            function time() {
+                var x=150;
+                var y=150;
+                var r=140;
+
+                var time = new Date();
+                var hour = time.getHours();
+                var min = time.getMinutes();
+                var sec = time.getSeconds();
+
+                var hourValue = (hour*30-90 + min/2)*Math.PI/180;
+                var minValue = (min*6-90)*Math.PI/180;
+                var secValue = (sec*6-90)*Math.PI/180;
+
+                //分刻度
+                for( var i=0;i<60;i++){
+                    oGc.beginPath();
+                    oGc.moveTo(x,y);
+                    oGc.arc(x,y,r,i*Math.PI/30,(i+1)*Math.PI/30,false);
+                    oGc.closePath();
+                    oGc.stroke();
+                    oGc.closePath();
+                }
+
+                //覆盖
+                oGc.fillStyle = 'white';
+                oGc.beginPath();
+                oGc.moveTo(x,y);
+                oGc.arc(x,y,r*19/20,0,2*Math.PI,false);
+                oGc.fill();
+                oGc.closePath();
+
+                //小时刻度
+                for( i=0;i<12;i++){
+                    oGc.beginPath();
+                    oGc.moveTo(x,y);
+                    oGc.arc(x,y,r,i*Math.PI/6,(i+1)*Math.PI/6,false);
+                    oGc.closePath();
+                    oGc.stroke();
+                    oGc.closePath();
+                }
+
+                //覆盖
+                oGc.fillStyle = 'white';
+                oGc.beginPath();
+                oGc.moveTo(x,y);
+                oGc.arc(x,y,r*18/20,0,2*Math.PI,false);
+                oGc.fill();
+                oGc.closePath();
+
+                //hour
+                oGc.lineWidth = 3;
+                oGc.beginPath();
+                oGc.moveTo(x,y);
+                oGc.arc(x,y,r*6/20,hourValue,hourValue,false);
+                oGc.closePath();
+                oGc.stroke();
+
+                //minutes
+                oGc.lineWidth = 2;
+                oGc.beginPath();
+                oGc.moveTo(x,y);
+                oGc.arc(x,y,r*14/20,minValue,minValue,false);
+                oGc.closePath();
+                oGc.stroke();
+
+                //second
+                oGc.lineWidth = 1
+                oGc.beginPath();
+                oGc.moveTo(x,y);
+                oGc.arc(x,y,r*18/20,secValue,secValue,false);
+                oGc.closePath();
+                oGc.stroke()
+            }
+
+            setInterval( time,1000 )
+
+        }
+    </script>
+</head>
+<body>
+<canvas id="can" width="400" height="300"></canvas>
+</body>
+</html>
